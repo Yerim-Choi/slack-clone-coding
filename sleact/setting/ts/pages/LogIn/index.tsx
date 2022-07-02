@@ -21,8 +21,8 @@ const LogIn = () => {
       axios
         .post('http://localhost:3095/api/users/login', { email, password }, { withCredentials: true })
         .then((response) => {
-          mutate(response.data, false); //OPTIMISTIC UI
-          // revalidate();
+          // mutate(response.data, false); //OPTIMISTIC UI
+          revalidate();
         })
         .catch((error) => {
           setLogInError(error.response?.data?.statusCode === 401);
