@@ -62,6 +62,7 @@ const Channel = () => {
           });
           return prevChatData;
         }, false).then(() => {
+          localStorage.setItem(`${workspace}-${channel}`, new Date().getTime().toString());
           setChat('');
           scrollbarRef.current?.scrollToBottom();
         });
@@ -126,6 +127,11 @@ const Channel = () => {
     setShowInviteChannelModal(false);
   }, []);
 
+  useEffect(() => {
+    //  시간 저장
+    localStorage.setItem(`${workspace}-${channel}`, new Date().getTime().toString());
+  }, [workspace, channel]);
+
   const onDrop = useCallback(
     (e) => {
       e.preventDefault();
@@ -151,6 +157,7 @@ const Channel = () => {
       }
       axios.post(`http://localhost:3095/api/workspaces/${workspace}/channels/${channel}/images`, formData).then(() => {
         setDragOver(false);
+        localStorage.setItem(`${workspace}-${channel}`, new Date().getTime().toString());
       });
     },
     [workspace, channel],

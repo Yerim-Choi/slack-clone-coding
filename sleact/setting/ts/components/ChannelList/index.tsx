@@ -1,5 +1,6 @@
 // import useSocket from '@hooks/useSocket';
 import { CollapseButton } from '@components/DMList/styles';
+import EachChannel from '@components/EachChannel';
 import { IChannel, IUser } from '@typings/db';
 import fetcher from '@utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';
@@ -41,7 +42,7 @@ const ChannelList: FC = () => {
         <span>Channels</span>
       </h2>
       <div>
-        {!channelCollapse &&
+        {/* {!channelCollapse &&
           channelData?.map((channel) => {
             return (
               <NavLink
@@ -52,6 +53,10 @@ const ChannelList: FC = () => {
                 <span># {channel.name}</span>
               </NavLink>
             );
+          })} */}
+        {!channelCollapse &&
+          channelData?.map((channel) => {
+            return <EachChannel key={channel.id} channel={channel} />;
           })}
       </div>
     </>

@@ -1,4 +1,5 @@
 import { CollapseButton } from '@components/DMList/styles';
+import EachDM from '@components/EachDM';
 import useSocket from '@hooks/useSocket';
 import { IUser, IUserWithOnline } from '@typings/db';
 import fetcher from '@utils/fetcher';
@@ -60,7 +61,7 @@ const DMList: FC = () => {
         <span>Direct Messages</span>
       </h2>
       <div>
-        {!channelCollapse &&
+        {/* {!channelCollapse &&
           memberData?.map((member) => {
             const isOnline = onlineList.includes(member.id);
             return (
@@ -79,6 +80,11 @@ const DMList: FC = () => {
                 {member.id === userData?.id && <span> (나)</span>}
               </NavLink>
             );
+          })} */}
+        {!channelCollapse &&
+          memberData?.map((member) => {
+            const isOnline = onlineList.includes(member.id);
+            return <EachDM key={member.id} member={member} isOnline={isOnline} />;
           })}
       </div>
     </>
